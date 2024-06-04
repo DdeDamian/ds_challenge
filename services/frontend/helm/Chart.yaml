@@ -1,0 +1,4 @@
+apiVersion: v1
+description: This project is the frontend service.
+name: frontend
+version: 1.0.0

@@ -1,0 +1,8 @@
+---
+creation_rules:
+  # KMS service for development
+  - path_regex: vars/development/(certs.)?secrets(.dec)?.yaml
+    kms: "arn:aws:kms:eu-central-1:891377286140:key/f1923757-a017-4257-9541-a064da4703b1+arn:aws:iam::891377286140:role/KMSHandling"
+  # # KMS service for production
+  # - path_regex: vars/production/(certs.)?secrets(.dec)?.yaml
+  #   kms: "arn:aws:kms:eu-central-1:891377286140:key/f1923757-a017-4257-9541-a064da4703b1+arn:aws:iam::891377286140:role/KMSHandling"

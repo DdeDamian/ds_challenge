@@ -1,0 +1,14 @@
+environments:
+  production: {}
+  development: {}
+---
+releases:
+  - name: frontend
+    namespace: "{{ .Environment.Name }}"
+    chart: .
+    version: '{{ env "CHART_VERSION" }}'
+    values:
+      - ./vars/values.yaml
+      - ./vars/{{ .Environment.Name }}/values.yaml
+    secrets:
+      - ./vars/{{ .Environment.Name }}/secrets.yaml
