@@ -109,14 +109,6 @@ variable "single_nat_gw" {
 ######################
 ## Security Variables
 ######################
-
-
-
-variable "environment" {
-  description = "The environment where you want to create the VPC and depending resources"
-  type        = string
-}
-
 variable "public_nacl_label" {
   description = "Labels to apply to the public network ACL"
   type        = map(string)

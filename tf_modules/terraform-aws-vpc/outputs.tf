@@ -37,16 +37,6 @@ output "public_subnets_cidr_blocks" {
   value       = aws_subnet.public_subnet.*.cidr_block
 }
 
-output "database_subnets" {
-  description = "List of IDs for DB subnets"
-  value       = aws_subnet.database_subnet.*.id
-}
-
-output "database_subnets_azs" {
-  description = "List of the AZ for the subnet"
-  value       = aws_subnet.database_subnet.*.availability_zone
-}
-
 ##############
 # Route tables
 ##############
