@@ -12,7 +12,7 @@ strategy:
 image:
   repository: ghcr.io/ddedamian/ds_challenge
   pullPolicy: Always
-  tag: daevelopment
+  tag: development
   imagePullSecretName: github-package-secret
 
 ingress:
