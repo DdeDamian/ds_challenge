@@ -115,5 +115,5 @@ jobs:
 
       - name: Deploy to EKS using Helmfile
         run: |
-          cd helm
+          cd services/frontend/helm
           helmfile --environment ${{ env.ENVIRONMENT }} apply
