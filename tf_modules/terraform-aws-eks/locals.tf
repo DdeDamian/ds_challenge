@@ -31,7 +31,7 @@ locals {
     USERDATA
   }
 
-  k8s_all_namespaces    = concat(tolist(["default"]), "${var.k8s_namespaces}")
+  k8s_all_namespaces    = concat(tolist(["default"]), var.k8s_namespaces)
   irsa_service_accounts = { for sa in var.irsa_service_accounts : sa.name => sa }
 
 }
