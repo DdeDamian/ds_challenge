@@ -14,8 +14,7 @@ This module specifically allows for the creation of the following resources:
 
 ```
 module "my_test_role" {
-  source  = "app.terraform.io/billomat/role/aws"
-  version = "0.1.0"
+  source    = "./tf_modules/terraform-aws-iam-role"
 
   # AWS provider settings
   providers = {
@@ -40,14 +39,14 @@ module "my_test_role" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 1.0 |
-| aws | >= 4.0.0 |
+| terraform | >= 1.6 |
+| aws | >= 5.52.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | 4.12.1 |
+| aws | >= 5.52.0 |
 
 ## Modules
 
@@ -59,21 +58,12 @@ No modules.
 |------|------|
 | [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy_attachment.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_policy_document.cross_account_assume_role_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.cross_account_assume_role_policy_for_tools](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| administrator_max_session_duration | n/a | `number` | `3600` | no |
-| create_administrator_role | Enables the creation of the `administrator_role` role | `bool` | `false` | no |
-| create_power_user_role | Enables the creation of the `power_user_role` role | `bool` | `false` | no |
-| create_read_only_role | Enables the creation of the `read_only_role` role | `bool` | `false` | no |
-| create_terraform_cloud_role | Enables the creation of the 'TerraformCloud' role | `bool` | `false` | no |
-| power_user_max_session_duration | n/a | `number` | `3600` | no |
 | principal_arns | n/a | `list(string)` | `[]` | no |
-| read_only_max_session_duration | n/a | `number` | `3600` | no |
 | roles | Map of roles to be created, including policies to be attached | ```map(object({ create_role = bool role_name = string role_description = string assume_role_policy = string max_session_duration = number policy_arn = list(string) tags = map(string) }))``` | `{}` | no |
 
 ## Outputs
