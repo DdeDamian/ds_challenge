@@ -111,7 +111,7 @@ jobs:
 
       - name: Configure kubectl
         run: |
-          aws eks update-kubeconfig --name aifinyo-${{ env.ENVIRONMENT }}-eks-cluster
+          aws eks update-kubeconfig --name docusketch-${{ env.ENVIRONMENT }}-eks-cluster
 
       - name: Deploy to EKS using Helmfile
         run: |
