@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Sid": "IRSATrustPolicy",
+      "Principal": {
+        "Federated": "${provider_arn}"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "${issuer_hostpath}:sub": "system:serviceaccount:${service_account_namespace}:${service_account_name}"
+        }
+      }
+    }
+  ]
+}

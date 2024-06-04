@@ -1,0 +1,12 @@
+controller:
+  service:
+    annotations:
+      service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0d936d196c0144af9, subnet-06ce812ae9ec35a91, subnet-07d602829bb14ac1f
+      service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:eu-central-1:637423388572:certificate/d88f027b-f042-40bd-8a46-2cd7493ea121
+      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+      service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+    targetPorts:
+      http: http
+      https: http
+  ingressClassResource:
+    name: "nginx-services"
