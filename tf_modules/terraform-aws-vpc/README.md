@@ -24,8 +24,7 @@ You'll need to have your AWS_PROFILE loaded up. Once you do, the module will ask
 
 ```hcl
 module "vpc" {
-  source  = "app.terraform.io/ddedamian/vpc/aws"
-  version = "1.0.0"
+  source    = "./tf_modules/terraform-aws-vpc"
 
   # AWS profile settings
   providers = {
