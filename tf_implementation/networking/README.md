@@ -12,8 +12,6 @@ A set of terraform scripts for installing:
 
 ## Requirements
 
-## Requirements
-
 | Name | Version |
 |------|---------|
 | terraform | ~> 1.6.6 |
