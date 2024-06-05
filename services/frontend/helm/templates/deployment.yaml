@@ -41,12 +41,6 @@ spec:
       securityContext:
       {{- toYaml .Values.securityContext | nindent 8 }}
     {{- end }}
-      volumes:
-      {{- if .Values.deployment.certs.enabled }}
-      - name: {{ .Release.Name }}-certs
-        secret:
-          secretName: {{ .Release.Name }}-certs
-      {{- end }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ default .Chart.Version .Values.image.tag }}"
@@ -56,12 +50,6 @@ spec:
           {{- toYaml .Values.livenessProbe | nindent 10 }}
         readinessProbe:
           {{- toYaml .Values.readinessProbe | nindent 10 }}
-        {{- end }}
-        volumeMounts:
-        {{- if .Values.deployment.certs.enabled }}
-        - name: {{ .Release.Name }}-certs
-          mountPath: /app/certs
-          readOnly: true
         {{- end }}
         envFrom:
         - configMapRef:
