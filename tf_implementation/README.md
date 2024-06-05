@@ -13,6 +13,7 @@ Trying to keep some kind of order I tried to put the instantiation of all realte
     - [Ingress-controller](#ingress-controller)
     - [Domain definition](#domain-definition)
     - [Certificates creation](#certificates-creation)
+    - [Github key](#github-key)
 
 ## General aspects
 
@@ -99,3 +100,23 @@ The domain was registered using Route53 service and all the external DNSs are al
 ### Certificates creation
 
 The certificate used in the load balancer for the secure conection was also requested by hand, and again it can be handle using terraform.
+
+### Github key
+
+In order to grant access to the github regitry I needed to use a special token on each deployment I used, s in that way the deployment can downloasd the image needed. To achive this I created the following resource in the cluster
+
+```yaml
+kind: Secret
+type: kubernetes.io/dockerconfigjson
+apiVersion: v1
+metadata:
+  name: github-package-secret
+  namespace: development
+data:
+  .dockerconfigjson: # Here we need to place the gthub tokenin base64
+```
+
+and to deploy it I run:
+```bash
+kubectl apply -f docker_config.yaml
+```
