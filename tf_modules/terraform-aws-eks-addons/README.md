@@ -6,12 +6,12 @@ Terraform module which creates AWS EKS Kubernetes addonsin a given cluster.
 * [Amazon EKS ](https://aws.amazon.com/eks/)
 * [Amazon EKS Addons](https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
 
-Usage
+## Usage
 -----
 You'll need to have your AWS_PROFILE loaded up. Once you do, the module will ask you for the variables that you'll want to set as seen below (e.g.):
 
 
-## Usage example
+### example
 
 ```hcl
 module "cluster_addon_kube_proxy" {

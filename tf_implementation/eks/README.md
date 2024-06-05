@@ -2,8 +2,18 @@
 
 A set of terraform scripts for installing:
 
-- EKS cluster
-- 
+- Creation of the EKS cluster
+- Security Groups (Master and workers)
+- Definition of templates for the implementation of workers
+- Management of users using IAM users as base.
+- Namespaces creation
+- Cluster roles definitions
+- Priority classes for specific services
+- Definition of the OIDC
+- Creation of ASG, node groups and launch configuration for the workers
+- Creation of service accounts
+- Policies and roles needed by the worker nodes
+- Deployment of helm charts that you need by default, i.e cluster-autoscaler
 
 ## Requirements
 

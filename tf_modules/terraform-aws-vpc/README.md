@@ -16,7 +16,7 @@ These types of resources are supported:
 This module creates the VPC along side the required resources to make the VPN work.
 Currently it's setup to create an Internet Gateway and a NAT gateway. NAT has elasticIPs assigned. There's one public subnet, one private subnet and one DB subnet, each with it's own route table.
 
-Usage
+## Usage
 -----
 You'll need to have your AWS_PROFILE loaded up. Once you do, the module will ask you for the variables that you'll want to set as seen below (e.g.):
 

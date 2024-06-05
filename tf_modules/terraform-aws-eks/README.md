@@ -5,68 +5,99 @@ Terraform module which creates an AWS EKS Kubernetes cluster in a given VPC.
 
 * [Amazon EKS ](https://aws.amazon.com/eks/)
 
-The module supports encryption at rest. In that case the official AMI is copied
-and encrypted so workers are launched from the encrypted image making the EBS
-boot volume encrypted by default at launch time.
+The module supports encryption at rest. In that case the official AMI is copied and encrypted so workers are launched from the encrypted image making the EBS boot volume encrypted by default at launch time.
 
-When the cluster is created, the config map aws-auth is deployed by default,
-allowing the workers to join the masters automatically. Also, a service account
-for Tiller (server-side of Helm) is created with cluster-admin permissions,
-so you can deploy Charts on top of this cluster.
+When the cluster is created, the config map aws-auth is deployed by default, allowing the workers to join the masters automatically. Also, a service account for Tiller (server-side of Helm) is created with cluster-admin permissions, so you can deploy Charts on top of this cluster.
 
-Lastly, some additional IAM policies are created and attached to the worker nodes
-so features like cluster autoscaler or external-DNS can be implemented without
-additional work from the IAM side.
+Lastly, some additional IAM policies are created and attached to the worker nodes so features like cluster autoscaler or external-DNS can be implemented without additional work from the IAM side.
 
-Usage
+## Usage
 -----
 You'll need to have your AWS_PROFILE loaded up. Once you do, the module will ask you for the variables that you'll want to set as seen below (e.g.):
 
-## Usage example
+### Example
 
 ```hcl
 module "eks_cluster" {
-  source    = "./tf_modules/terraform-aws-eks"
+  source = "./tf_modules/terraform-aws-eks/"
 
-  # Network settings
+  # AWS provider settings
+  providers = {
+    aws = aws.environment
+  }
+
+  # Network settings`
   vpc_id              = module.vpc.vpc_id
   vpc_cidr            = module.vpc.vpc_cidr_block
   public_subnets_ids  = [module.vpc.public_subnets]
   private_subnets_ids = [module.vpc.private_subnets]
 
-  # EKS settings
-  cluster_name          = local.cluster_name
-  ami_name              = "amazon-eks-node-1.11-v20190220"
-  workers_instance_type = "t2.medium"
-  keypair_name          = ""
-  boot_volume_size      = "20"
-  encrypted_boot_volume = "false"
-  asg_min_size          = "2"
-  asg_desired_size      = "3"
-  asg_max_size          = "4"
-  deploy_charts         = true
+  # EKS cluster settings
+  environment              = terraform.workspace
+  cluster_name             = "my-test-cluster"
+  k8s_version              = "1.29"
+  amzn_eks_worker_ami_name = "amazon-eks-node-1.29-v20240202"
+  workers_instance_type    = "t3a.micro"
+  keypair_name             = "my-key"
+  boot_volume_size         = "20"
+  encrypted_boot_volume    = "false"
+  asg_min_size             = "2"
+  asg_desired_size         = "3"
+  asg_max_size             = "4"
+
+  # Node group
+  create_ng_role = true
+  ng_role_arn    = local.ng_role_arn[terraform.workspace]
+  node_groups    = [
+    {
+      "name"                        = "Development-NG-OnDemand"
+      "scaling_config_min_size"     = 1
+      "scaling_config_desired_size" = 1
+      "scaling_config_max_size"     = 1
+      "disk_size"                   = 20
+      "instance_types"              = ["t3a.small"]
+      "release_version"             = "1.29.0-20240202" 
+      "k8s_version"                 = "1.29"
+      "capacity_type"               = "ON_DEMAND"
+      "ec2_pricing_model"           = "on-demand"
+    },
+    {
+      "name"                        = "Development-NG-Spot"
+      "scaling_config_min_size"     = 1
+      "scaling_config_desired_size" = 1
+      "scaling_config_max_size"     = 2
+      "disk_size"                   = 20
+      "instance_types"              = ["t3a.micro", "t3.micro", ]
+      "release_version"             = "1.29.0-20240202"
+      "k8s_version"                 = "1.29"
+      "capacity_type"               = "SPOT"
+      "ec2_pricing_model"           = "spot"
+    }
+  ]
+
+  # K8s settings
+  create_master_role  = local.create_master_role[terraform.workspace]
+  create_workers_role = local.create_workers_role[terraform.workspace]
+  map_roles           = local.eks_roles_access[terraform.workspace]
+  map_users           = local.eks_users_access[terraform.workspace]
+  k8s_namespaces      = local.cluster_namespaces[terraform.workspace]
+  priority_classes    = local.priority_classes[terraform.workspace]
+  master_role_arn     = local.master_role_arn[terraform.workspace]
+  workers_role_arn    = local.workers_role_arn[terraform.workspace]
+
+  # Helm charts
+  deploy_charts         = local.deploy_charts[terraform.workspace]
+  irsa_service_accounts = local.irsa_service_accounts[terraform.workspace]
+
   charts = {
-   "nginx-test" = {
-     name             = "nginx-test"
-     repository       = "https://charts.bitnami.com/bitnami"
-     chart            = "nginx"
-     namespace        = "devops-testing-helm"
-     version          = "6.2.0"
-     values           = ["${path.cwd}/helm_values/chart/values.yaml"]
-     create_namespace = true
-     set_sensitive    = [
-       {
-         name = "nameOverride"
-         value = data.aws_kms_secrets.helm-secrets.plaintext["name-override"]
-         type = "string"
-       },
-       {
-         name = "pullPolicy"
-         value = data.aws_kms_secrets.helm-secrets.plaintext["pull-policy"]
-         type = "string"
-       }
-     ]
-   }
+    "cluster-autoscaler" = {
+      repository       = "https://kubernetes.github.io/autoscaler"
+      chart            = "cluster-autoscaler"
+      namespace        = "kube-system"
+      version          = "9.35.0"
+      values           = ["${path.cwd}/helm/cluster-autoscaler/vars/${terraform.workspace}/values.yaml"]
+      create_namespace = false
+    },
   }
 }
 

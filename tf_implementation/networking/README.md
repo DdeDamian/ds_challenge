@@ -48,3 +48,4 @@ No resources.
 | vpc_cidr_block | The CIDR block of the VPC |
 | vpc_id | The ID of the VPC |
 | vpc_nat_public_ip | The public IP of NATgw's vpc |
+
