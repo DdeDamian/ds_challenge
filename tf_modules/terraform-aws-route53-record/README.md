@@ -27,9 +27,10 @@ module "readreplica_cname" {
   ttl     = "300"
   records = ["database.cjicivp3c4i8.us-east-1.rds.amazonaws.com"]
 }
-# For example we can create a CNAME record
+
+# Another example creating an A record
 module "readreplica_alias" {
-  source  = "app.terraform.io/billomat/route53-record/aws"
+  source    = "./tf_modules/terraform-aws-route53-record"
 
   # AWS provider settings
   providers = {
