@@ -1,6 +1,6 @@
 # AWS resources implementation
 
-Trying to keep some kind of order I tried to put the instantiation of all realted resources togheter. In other words, all the resources related to the cluster in `eks`, network stuff in `networking` and the small pieces that are alone in `extra_resources`.
+Trying to keep some kind of order I tried to put the instantiation of all related resources together. In other words, all the resources related to the cluster in `eks`, network stuff in `networking` and the small pieces that are alone in `extra_resources`.
 
 ## Table of Contents
 
@@ -18,13 +18,13 @@ Trying to keep some kind of order I tried to put the instantiation of all realte
 
 All the terraform implementation directories shared some files, as the modules, not in its content but in the usage. This files are:
 
-  - versions.tf: containing similar information as the modules but in this case we are defining stricter values to avoid incompatibilities.
-  - variables.tf: general variables in this case we define the ones required by AWS provider to avoid warnings during run.
-  - README.md: Short description of the implementation and designing desicion made.
-  - outputs.tf: actual content to be showned after the run. This files implements the outputs of the modules.
-  - main.tf: containing the providers definition and configuration.
-  - locals.tf: this is one of the most important ones, because here we define the values to use on the modules implementation. More details here [locals.tf](#localstf)
-  - data.tf: in case that we need some extra data like some values from a partiuclar data source will be define here.
+- versions.tf: containing similar information as the modules but in this case we are defining stricter values to avoid incompatibilities.
+- variables.tf: general variables in this case we define the ones required by AWS provider to avoid warnings during run.
+- README.md: Short description of the implementation and designing decision made.
+- outputs.tf: actual content to be shown after the run. This files implements the outputs of the modules.
+- main.tf: containing the providers definition and configuration.
+- locals.tf: this is one of the most important ones, because here we define the values to use on the modules implementation. More details here [locals.tf](#localstf)
+- data.tf: in case that we need some extra data like some values from a particular data source will be define here.
 
 ## Implementation
 
@@ -36,7 +36,7 @@ The way to define this workspaces and move around id:
 terraform workspace new <environment-name>
 
 # Change to a different workspace
-terraform worksapce select <environment-name>
+terraform workspace select <environment-name>
 ```
 
 The key for this approach to work is to have a well defined locals.tf file, I'll go a little deeper in the next section.
@@ -46,7 +46,7 @@ The key for this approach to work is to have a well defined locals.tf file, I'll
 As I mention it is important to have a well defined and used locals.tf to works with the different workspaces, but what this means?
 The response it is more clear with an example:
 
-Imagine that you need to maintain two different envronments `development` and `production`. Obviously you will define both workspaces, but the locals,tf file needs to be prepared to handle them.
+Imagine that you need to maintain two different environments `development` and `production`. Obviously you will define both workspaces, but the locals,tf file needs to be prepared to handle them.
 
 ```hcl
 locals{
@@ -79,7 +79,7 @@ module "vpc" {
 }
 ```
 
-As you may notice, we are referencing the content of each map using `terraform.workspace` this variable provided by terraform tells us in which workspace are we placed on, so the implementation automatically looks for the value define for that workspace/environemnt.
+As you may notice, we are referencing the content of each map using `terraform.workspace` this variable provided by terraform tells us in which workspace are we placed on, so the implementation automatically looks for the value define for that workspace/environment.
 
 In our challenge we just have one workspace/env but I defined the locals using this approach to show the flexibility of the usage of modules and the easy that it is to define new environments.
 
@@ -89,16 +89,16 @@ As part of the process of the resources creation I took a few ones that are not 
 
 ### Ingress-controller
 
-As part of the extra resources used for the fullfilment of the project and taking the advantage of use helm, I decided to use and ingress-controller to handle the access to the cluster's services. It was installed by hand and the instructions and variables definition are in the `helm` diretory.
-Something important to mention is that this ingress-controller is the one in charge of create and destroy the load balancers we are goign to use to access the different services, through its configuration files we can define which certificate are we going to use for secure conections, subnets to use, etc.
+As part of the extra resources used for the fulfillment of the project and taking the advantage of use helm, I decided to use and ingress-controller to handle the access to the cluster's services. It was installed by hand and the instructions and variables definition are in the `helm` directory.
+Something important to mention is that this ingress-controller is the one in charge of create and destroy the load balancers we are going to use to access the different services, through its configuration files we can define which certificate are we going to use for secure connections, subnets to use, etc.
 
 ### Certificates creation
 
-The certificate used in the load balancer for the secure conection was requested by hand.
+The certificate used in the load balancer for the secure connection was requested by hand.
 
 ### Github key
 
-In order to grant access to the github regitry I needed to use a special token on each deployment I used, s in that way the deployment can downloasd the image needed. To achive this I created the following resource in the cluster
+In order to grant access to the github registry I needed to use a special token on each deployment I used, s in that way the deployment can download the image needed. To achieve this I created the following resource in the cluster
 
 ```yaml
 kind: Secret
@@ -108,7 +108,7 @@ metadata:
   name: github-package-secret
   namespace: development
 data:
-  .dockerconfigjson: # Here we need to place the gthub tokenin base64
+  .dockerconfigjson: # Here we need to place the github token in base64
 ```
 
 and to deploy it I run:

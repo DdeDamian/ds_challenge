@@ -1,10 +1,9 @@
-AWS IAM Roles creation Terraform module
-========================
+# AWS IAM Roles creation Terraform module
 
 Terraform module which creates IAM roles and its policy attachments.
 
 ## Usage
------
+
 This module specifically allows for the creation of the following resources:
 
 - aws_iam_role
@@ -12,7 +11,7 @@ This module specifically allows for the creation of the following resources:
 
 ### example
 
-```
+```hcl
 module "my_test_role" {
   source    = "./tf_modules/terraform-aws-iam-role"
 

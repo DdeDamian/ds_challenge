@@ -1,15 +1,13 @@
-AWS EKS Addons Terraform module
-=======================
+# AWS EKS Addons Terraform module
 
-Terraform module which creates AWS EKS Kubernetes addonsin a given cluster.
+Terraform module which creates AWS EKS Kubernetes addons in a given cluster.
 
-* [Amazon EKS ](https://aws.amazon.com/eks/)
-* [Amazon EKS Addons](https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
+- [Amazon EKS](https://aws.amazon.com/eks/)
+- [Amazon EKS Addons](https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html)
 
 ## Usage
------
-You'll need to have your AWS_PROFILE loaded up. Once you do, the module will ask you for the variables that you'll want to set as seen below (e.g.):
 
+You'll need to have your AWS_PROFILE loaded up. Once you do, the module will ask you for the variables that you'll want to set as seen below (e.g.):
 
 ### example
 

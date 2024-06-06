@@ -3,6 +3,7 @@
 This section is intended to help mainly linux users to install the different tools we will need for this project. You can also follow the official docs that it is mention on each section.
 
 ## Table of Contents
+
 - [Tools installation](#tools-installation)
   - [Table of Contents](#table-of-contents)
   - [Basic tools](#basic-tools)
@@ -24,6 +25,7 @@ sudo apt install git curl apt-transport-https unzip python3-pip
 ```
 
 ## aws-cli
+
 The AWS Command Line Interface (AWS CLI) is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts.
 
 ```bash
@@ -38,7 +40,8 @@ sudo ./aws/install
 ```
 
 To easily configure your environment we suggest to use this two templates, both of them should be under ~/.aws/ :
-```
+
+```text
 # credentials
 # ~/.aws/credentials
 
@@ -103,20 +106,21 @@ mv helmswitch /usr/local/bin/
 helmswitch # select the version you want
 ```
 
-  ### helm-secrets
+### helm-secrets
 
-  ```bash
-  helm plugin install https://github.com/jkroepke/helm-secrets
-  ```
+```bash
+helm plugin install https://github.com/jkroepke/helm-secrets
+```
 
-  ### helm-diff
-  ```bash
-  helm plugin install https://github.com/databus23/helm-diff
+### helm-diff
+
+```bash
+helm plugin install https://github.com/databus23/helm-diff
   ```
 
 ## Terraform-switch
-The `tfswitch` command line tool lets you switch between different versions of terraform. If you do not have a particular version of terraform installed, tfswitch will download the version you desire. The installation is minimal and easy. Once installed, simply select the version you require from the dropdown and start using terraform.
 
+The `tfswitch` command line tool lets you switch between different versions of terraform. If you do not have a particular version of terraform installed, tfswitch will download the version you desire. The installation is minimal and easy. Once installed, simply select the version you require from the dropdown and start using terraform.
 
 ```bash
 # Install tfswitch

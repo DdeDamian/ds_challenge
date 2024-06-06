@@ -19,13 +19,6 @@ module "policies" {
     "aws" = "aws.identity"
   }
 
-  # Default policies
-  create_allow_manage_own_access_keys         = true
-  create_allow_manage_own_passwords           = true
-  create_allow_manage_own_user_mfa            = true
-  create_allow_manage_own_virtual_mfa_device  = true
-  create_allow_view_account_info              = true
-
   # Custom policies
   policies = {
     "CustomPolicy" = {
@@ -39,6 +32,7 @@ module "policies" {
     },
 
   }
+}
 ```
 
 ## Requirements

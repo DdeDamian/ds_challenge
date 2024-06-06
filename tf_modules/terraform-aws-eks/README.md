@@ -1,9 +1,8 @@
-AWS EKS Terraform module
-=======================
+# AWS EKS Terraform module
 
 Terraform module which creates an AWS EKS Kubernetes cluster in a given VPC.
 
-* [Amazon EKS ](https://aws.amazon.com/eks/)
+- [Amazon EKS](https://aws.amazon.com/eks/)
 
 The module supports encryption at rest. In that case the official AMI is copied and encrypted so workers are launched from the encrypted image making the EBS boot volume encrypted by default at launch time.
 
@@ -12,7 +11,7 @@ When the cluster is created, the config map aws-auth is deployed by default, all
 Lastly, some additional IAM policies are created and attached to the worker nodes so features like cluster autoscaler or external-DNS can be implemented without additional work from the IAM side.
 
 ## Usage
------
+
 You'll need to have your AWS_PROFILE loaded up. Once you do, the module will ask you for the variables that you'll want to set as seen below (e.g.):
 
 ### Example
@@ -102,6 +101,7 @@ module "eks_cluster" {
 }
 
 ```
+
 ## Requirements
 
 | Name | Version |
@@ -196,7 +196,7 @@ No modules.
 | asg_desired_size | The number of instances that should be running in the ASG | `number` | n/a | yes |
 | asg_max_size | The maximum size of the autoscaling group for K8S workers | `number` | n/a | yes |
 | asg_min_size | The minimum size of the autoscaling group for K8S workers | `number` | n/a | yes |
-| asg_tags | Map containig default ASG tags. | ```list(object( { key = string value = string propagate_at_launch = bool }))``` | `[]` | no |
+| asg_tags | Map containing default ASG tags. | ```list(object( { key = string value = string propagate_at_launch = bool }))``` | `[]` | no |
 | boot_volume_size | The size of the root volume in GBs | `number` | n/a | yes |
 | boot_volume_type | The type of volume to allocate [gp2\|io1] | `string` | `"gp2"` | no |
 | charts | A map of values needed to create a new helm release | `any` | `{}` | no |
@@ -208,7 +208,7 @@ No modules.
 | create_route53_policy | true if you want to create route53 policy for external-dns | `bool` | `false` | no |
 | create_workers_role | Enables creation of Workers Role | `bool` | `false` | no |
 | deploy_charts | Enables the helm charts deployment | `bool` | `false` | no |
-| encrypted_ami_tags | A map of tags needed to identify the encripted ami | `map(string)` | `{}` | no |
+| encrypted_ami_tags | A map of tags needed to identify the encrypted ami | `map(string)` | `{}` | no |
 | encrypted_boot_volume | If true, an encrypted EKS AMI will be created to support encrypted boot volumes | `bool` | n/a | yes |
 | environment | The environment where you want to create the VPC and depending resources | `string` | n/a | yes |
 | general_tags | A map of tags to add to all resources | `map(string)` | `{}` | no |

@@ -1,5 +1,5 @@
 variable "create_kms_key" {
-  description = "This varaible will define if we crete the resource or not"
+  description = "This variable will define if we crete the resource or not"
   type        = bool
 }
 

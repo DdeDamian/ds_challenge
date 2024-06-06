@@ -3,7 +3,7 @@
 Terraform module which creates an AWS Route53 subdomain. You can allow it to be delegated and define the name, domain, etc.
 
 ## Usage
------
+
 This module specifically allows for the creation of the following resources:
 
 - aws_route53_record
@@ -49,6 +49,7 @@ module "readreplica_alias" {
   }
 }
 ```
+
 ## Requirements
 
 | Name | Version |

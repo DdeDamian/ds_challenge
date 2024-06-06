@@ -1,9 +1,8 @@
-AWS KMS Terraform module
-=================================
+# AWS KMS Terraform module
 
 Terraform module which creates KMS keys.
 
-* [Amazon KMS ](https://aws.amazon.com/es/kms/)
+- [Amazon KMS ](https://aws.amazon.com/es/kms/)
 
 This module allows you to create KMS key(s). Enabling or not the key, defining aliases, etc.
 
@@ -59,7 +58,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| create_kms_key | This varaible will define if we crete the resource or not | `bool` | n/a | yes |
+| create_kms_key | This variable will define if we crete the resource or not | `bool` | n/a | yes |
 | description | The description of the key as viewed in AWS console. | `string` | n/a | yes |
 | enable_key | Specifies whether the key is enabled. | `bool` | `true` | no |
 | key_alias | The display name of the alias. | `string` | n/a | yes |

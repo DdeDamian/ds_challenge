@@ -1,23 +1,22 @@
-AWS VPC Terraform module
-========================
+# AWS VPC Terraform module
 
 Terraform module which creates VPC resources on AWS.
 
 These types of resources are supported:
 
-* [VPC](https://www.terraform.io/docs/providers/aws/r/vpc.html)
-* [Subnet](https://www.terraform.io/docs/providers/aws/r/subnet.html)
-* [Route](https://www.terraform.io/docs/providers/aws/r/route.html)
-* [Route table](https://www.terraform.io/docs/providers/aws/r/route_table.html)
-* [Internet Gateway](https://www.terraform.io/docs/providers/aws/r/internet_gateway.html)
-* [NAT Gateway](https://www.terraform.io/docs/providers/aws/r/nat_gateway.html)
-* [ACL support](https://www.terraform.io/docs/providers/aws/r/network_acl.html)
+- [VPC](https://www.terraform.io/docs/providers/aws/r/vpc.html)
+- [Subnet](https://www.terraform.io/docs/providers/aws/r/subnet.html)
+- [Route](https://www.terraform.io/docs/providers/aws/r/route.html)
+- [Route table](https://www.terraform.io/docs/providers/aws/r/route_table.html)
+- [Internet Gateway](https://www.terraform.io/docs/providers/aws/r/internet_gateway.html)
+- [NAT Gateway](https://www.terraform.io/docs/providers/aws/r/nat_gateway.html)
+- [ACL support](https://www.terraform.io/docs/providers/aws/r/network_acl.html)
 
 This module creates the VPC along side the required resources to make the VPN work.
 Currently it's setup to create an Internet Gateway and a NAT gateway. NAT has elasticIPs assigned. There's one public subnet, one private subnet and one DB subnet, each with it's own route table.
 
 ## Usage
------
+
 You'll need to have your AWS_PROFILE loaded up. Once you do, the module will ask you for the variables that you'll want to set as seen below (e.g.):
 
 ### Example VPC
