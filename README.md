@@ -14,6 +14,7 @@ This main page will try to cover the general aspects of each section, but in eac
     - [App deployment](#app-deployment)
     - [CI/CD](#cicd)
   - [Tools](#tools)
+  - [Set up](#set-up)
   - [Improvements](#improvements)
 
 
@@ -82,6 +83,12 @@ As I mention earlier, in ach section you have more details on how all the sectio
   - CI/CD: [Github actions](https://github.com/features/actions)
   - Kubernetes management: [helm](https://helm.sh/) and [helmfile](https://github.com/helmfile/helmfile) (manifests), [Lens](https://k8slens.dev/) (cluster visualization)
   - Secrets management: [sops](https://github.com/getsops/sops) (working togheter with KMS service)  
+
+## Set up
+
+These are the requirements to use this repo:
+
+
 
 ## Improvements
 
