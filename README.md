@@ -49,6 +49,8 @@ This modules structure means that I created several Terraform modules to handle 
   - terraform-aws-eks-addons
   - terraform-aws-eks-iam-policy
   - terraform-aws-eks-iam-role
+  - terraform-aws-eks-kms
+  - terraform-aws-eks-route53-record
   - terraform-aws-eks-vpc
 
 All this modules are stored in `./tf_modules`. Rather using this approach it will be better to store them in the Terraform cloud registry, but we will cover this in the [improvements](#improvements) section.

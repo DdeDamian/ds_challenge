@@ -11,7 +11,6 @@ Trying to keep some kind of order I tried to put the instantiation of all realte
     - [locals.tf](#localstf)
   - [Extra implementation decisions](#extra-implementation-decisions)
     - [Ingress-controller](#ingress-controller)
-    - [Domain definition](#domain-definition)
     - [Certificates creation](#certificates-creation)
     - [Github key](#github-key)
 
@@ -93,13 +92,9 @@ As part of the process of the resources creation I took a few ones that are not 
 As part of the extra resources used for the fullfilment of the project and taking the advantage of use helm, I decided to use and ingress-controller to handle the access to the cluster's services. It was installed by hand and the instructions and variables definition are in the `helm` diretory.
 Something important to mention is that this ingress-controller is the one in charge of create and destroy the load balancers we are goign to use to access the different services, through its configuration files we can define which certificate are we going to use for secure conections, subnets to use, etc.
 
-### Domain definition
-
-The domain was registered using Route53 service and all the external DNSs are also handle by it. Because the services can be accesed without the need of the domain I consider it out of the scope of the challenge, but it can be handle with Terraform.
-
 ### Certificates creation
 
-The certificate used in the load balancer for the secure conection was also requested by hand, and again it can be handle using terraform.
+The certificate used in the load balancer for the secure conection was requested by hand.
 
 ### Github key
 
