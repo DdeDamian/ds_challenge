@@ -31,3 +31,12 @@ module "ds_certification_record" {
   records = ["_c7f3a7b5fd22b4409a1e43c32b509954.sdgjtdhdhz.acm-validations.aws."]
   alias   = {}
 }
+
+resource "aws_route53_zone" "dschallenge" {
+
+  provider = aws.environment
+
+  name          = "dschallenge.de"
+  comment       = "HostedZone created by Route53 Registrar"
+  force_destroy = false
+}
