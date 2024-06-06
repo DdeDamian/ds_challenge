@@ -55,7 +55,7 @@ This modules structure means that I created several Terraform modules to handle 
 
 All this modules are stored in `./tf_modules`. Rather using this approach it will be better to store them in the Terraform cloud registry, but we will cover this in the [improvements](#improvements) section.
 
-For the actual implementation of all the resources I created a new directory `./tf_implementation`, here I structured the calls to the modules generalizing by main service (networking, eks, extras). The main idea under this structure is to concentrate all the similar resources in the same place. So, for example in the same directory I have eks module implementation and eks-addons. The details on these implemetantions is here [Terraform Modules](./tf_implementation/README.md)
+For the actual implementation of all the resources I created a new directory `./tf_implementation`, here I structured the calls to the modules generalizing by main service (networking, eks, extras). The main idea under this structure is to concentrate all the similar resources in the same place. So, for example in the same directory I have eks module implementation and eks-addons. The details on these implemetantions is here [Terraform Modules](./tf_modules/README.md)
 
 ### Application
 

@@ -5,9 +5,11 @@ Terraform modules are reusable and shareable components that group together rela
 For our solution I develop five main module
 
   - [terraform-aws-eks](./terraform-aws-eks/README.md)
-  - [terraform-aws-eks-addons](./terraform-aws-eks-addons/README%20.md)
+  - [terraform-aws-eks-addons](./terraform-aws-eks-addons/README.md)
   - [terraform-aws-eks-iam-policy](./terraform-aws-iam-policy/README.md)
   - [terraform-aws-eks-iam-role](./terraform-aws-iam-role/README.md)
+  - [terraform-aws-eks-kms](./terraform-aws-kms/README.md)
+  - [terraform-aws-eks-route53-record](./terraform-aws-route53-record/README.md)
   - [terraform-aws-eks-vpc](./terraform-aws-vpc/README.md)
 
 I will briefly explain each one, further information may be found inside of them.
@@ -21,6 +23,8 @@ I will briefly explain each one, further information may be found inside of them
     - [terraform-aws-eks-addons](#terraform-aws-eks-addons)
     - [terraform-aws-iam-policy](#terraform-aws-iam-policy)
     - [terraform-aws-iam-role](#terraform-aws-iam-role)
+    - [terraform-aws-kms](#terraform-aws-kms)
+    - [terraform-aws-route53-record](#terraform-aws-route53-record)
     - [terraform-aws-vpc](#terraform-aws-vpc)
 
 ## General configuration
@@ -63,6 +67,14 @@ Given a map of key values, being the key the name of the policy and the value it
 ### terraform-aws-iam-role
 
 The IAM Role modules is in charge of exactly that, the creation of roles, but it also allowed you to add policies to those roles.
+
+### terraform-aws-kms
+
+This module intention is to facilitate KMS keys creation and handling.
+
+### terraform-aws-route53-record
+
+This module allows you to create record with different caracteristics.
 
 ### terraform-aws-vpc
 

@@ -13,7 +13,7 @@ This module specifically allows for the creation of the following resources:
 ```hcl
 # For example we can create a CNAME record
 module "readreplica_cname" {
-  source  = "app.terraform.io/billomat/route53-record/aws"
+  source    = "./tf_modules/terraform-aws-route53-record"
 
   # AWS provider settings
   providers = {

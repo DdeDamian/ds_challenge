@@ -15,7 +15,7 @@ You'll need to have your AWS_PROFILE loaded up. Once you do, the module will ask
 
 ```hcl
 module "kms" {
-  source = "./modules/kms"
+  source    = "./tf_modules/terraform-aws-kms"
 
   # AWS provider settings
   providers = {
